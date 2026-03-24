@@ -1,0 +1,215 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #323b59;
+  --panel: #0a0a0a;
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.45);
+  --btn: rgba(255, 255, 255, 0.06);
+  --btn-hover: rgba(255, 255, 255, 0.1);
+  --op: #ff9f0a;
+  --op-pressed: #ffb347;
+  --check-bgc: #717577;
+  --check-col: #f8f8f8;
+  --operator: #717576;
+  --operator-text: #f6f7f7;
+  /* 每一行最后一个按键（统一右列） */
+  --row-last-bg: #ff8b00;
+  --row-last-bg-hover: #ffa100;
+  --row-last-color: #fffaf1;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue",
+    Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    sans-serif;
+  background: linear-gradient(to top left, #1a1b26, #1c1d29, var(--bg));
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.calculator {
+  width: min(360px, 92vw);
+  background: #1a1b26;
+  border-radius: 28px;
+  padding: 18px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.display {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 18px;
+  padding: 18px 14px;
+  margin-bottom: 14px;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 6px;
+  overflow: hidden;
+}
+
+
+.display__history {
+  width: 100%;
+  min-width: 0;
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+.display__value {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 52px;
+  line-height: 52px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 42px;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+.display__value--overflow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  pointer-events: none;
+  /* 左侧渐隐遮罩：更接近 iOS 溢出视觉 */
+  background: linear-gradient(
+    to right,
+    rgba(26, 27, 38, 0.98) 0%,
+    rgba(26, 27, 38, 0.78) 40%,
+    rgba(26, 27, 38, 0.0) 100%
+  );
+}
+
+.display__value--overflow {
+  /* 左侧层叠感：溢出时给字符叠加轻微多层阴影 */
+  text-shadow:
+    -1px 0 0 rgba(255, 255, 255, 0.18),
+    -2px 0 0 rgba(255, 255, 255, 0.1),
+    -4px 0 8px rgba(0, 0, 0, 0.35);
+}
+
+.keypad {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  height: 56px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--btn);
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  /* 背景色和文字颜色过渡，按住按钮会有下压效果 */
+  transition:
+    background 120ms ease,
+    transform 80ms ease,
+    color 120ms ease;
+}
+.btn .iconfont.icon-huitui {
+  font-size: 22px;
+  line-height: 1;
+  transform: translateX(-2px);
+}
+
+.btn:hover {
+  background: var(--btn-hover);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn.operator {
+  background: var(--operator);
+  color: var(--operator-text);
+}
+
+.btn.operator:hover {
+  background: #636667;
+}
+
+.btn--action {
+  color: var(--check-col);
+  background: var(--check-bgc);
+}
+
+.btn--ghost {
+  background: transparent;
+  opacity: 0;
+  cursor: default;
+}
+
+/* 每个 .row 里最后一个 .btn（÷、×、−、+、= 等）背景与文字统一；需写在 .btn--op 之后以保证覆盖原修饰类 */
+.row > .btn:last-child {
+  background: var(--row-last-bg);
+  color: var(--row-last-color);
+  font-size: 26px;
+}
+
+.row > .btn:last-child:hover {
+  background: var(--row-last-bg-hover);
+}
+
+/* 保留类名供语义/脚本使用；外观由上一段「每行最后一个」统一控制 */
+.btn--op {
+  color: var(--row-last-color);
+}
+
+.btn--eq {
+  color: var(--row-last-color);
+}
+
+@media (max-width: 380px) {
+.display__value {
+    font-size: 36px;
+  }
+
+  .btn {
+    height: 52px;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>极简计算器</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./iconfont/iconfont.css" />
+  </head>
+
+  <body>
+    <main class="page">
+      <section class="calculator" aria-label="计算器">
+        <div class="display" aria-live="polite">
+          <div class="display__history" data-history></div>
+          <div class="display__value" data-display>0</div>
+        </div>
+
+        <div class="keypad" aria-label="按键区域" data-keypad>
+          <div class="row">
+            <button
+              class="btn operator"
+              type="button"
+              aria-label="退格"
+              data-action="backspace"
+            >
+              <i class="iconfont icon-huitui"></i>
+            </button>
+            <button class="btn operator" type="button" data-action="ac">
+              AC
+            </button>
+            <button class="btn operator" type="button" data-action="percent">%</button>
+            <button
+              class="btn btn--op"
+              type="button"
+              data-action="op"
+              data-op="/"
+            >
+              ÷
+            </button>
+          </div>
+
+          <div class="row">
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="7"
+            >
+              7
+            </button>
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="8"
+            >
+              8
+            </button>
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="9"
+            >
+              9
+            </button>
+            <button
+              class="btn btn--op"
+              type="button"
+              data-action="op"
+              data-op="*"
+            >
+              ×
+            </button>
+          </div>
+
+          <div class="row">
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="4"
+            >
+              4
+            </button>
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="5"
+            >
+              5
+            </button>
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="6"
+            >
+              6
+            </button>
+            <button
+              class="btn btn--op"
+              type="button"
+              data-action="op"
+              data-op="-"
+            >
+              −
+            </button>
+          </div>
+
+          <div class="row">
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="1"
+            >
+              1
+            </button>
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="2"
+            >
+              2
+            </button>
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="3"
+            >
+              3
+            </button>
+            <button
+              class="btn btn--op"
+              type="button"
+              data-action="op"
+              data-op="+"
+            >
+              +
+            </button>
+          </div>
+
+          <div class="row">
+            <button class="btn btn--action" type="button" data-action="neg">
+              +/-
+            </button>
+            <button
+              class="btn"
+              type="button"
+              data-action="digit"
+              data-digit="0"
+            >
+              0
+            </button>
+            <button class="btn" type="button" data-action="decimal">.</button>
+            <button class="btn btn--eq" type="button" data-action="equals">
+              =
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
