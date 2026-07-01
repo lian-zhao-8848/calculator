@@ -1,4 +1,4 @@
-# 极简计算器
+# 极简计算器（https://lian-zhao-8848.github.io/calculator/）
 
 一个使用原生 HTML / CSS / JavaScript 实现的计算器项目，支持点击与键盘输入两种交互方式。
 
